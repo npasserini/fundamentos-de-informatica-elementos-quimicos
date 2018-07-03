@@ -1,5 +1,6 @@
 import elemento
 import tabla_periodica
+import compuesto
 
 oxigeno = elemento.Elemento("O", 8, 8, 4)
 hidrogeno = elemento.Elemento("H", 1, 0, 1)
@@ -14,3 +15,8 @@ tabla = tabla_periodica.TablaPeriodica([
 ])
 
 tablaVacia = tabla_periodica.TablaPeriodica()
+
+nh3 = compuesto.Compuesto('NH3')
+nh3.agregarAtomo(tabla.elementoS("N"))
+nh3.agregarAtomos(tabla.elementoS("H"), 3)
+nh3.enlazarConVarios("N1", ["H2", "H3", "H4"])
