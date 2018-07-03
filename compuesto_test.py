@@ -44,3 +44,18 @@ class CompuestoTest(unittest.TestCase):
 
   def test_proporcionSobreMasa(self):
     self.assertAlmostEqual(0.8235, nh3.proporcionSobreMasa(nitrogeno), 4)
+
+  def test_atomoTieneEnlacesSobrantes(self):
+    self.assertItemsEqual(["H1"], sobranol.atomosConEnlacesSobrantes())
+    self.assertItemsEqual([], nh3.atomosConEnlacesSobrantes())
+
+  def test_atomosConEnlacesDisponibles(self):
+    self.assertItemsEqual(["O1"], disponiblol.atomosConEnlacesDisponibles())
+    self.assertItemsEqual([], nh3.atomosConEnlacesDisponibles())
+
+  def test_elementosOk(self):
+    self.assertTrue(nh3.enlacesOK())
+    self.assertTrue(disponiblol.enlacesOK())
+
+    self.assertFalse(sobranol.enlacesOK())
+    self.assertFalse(inexistenciol.enlacesOK())
