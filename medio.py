@@ -18,7 +18,7 @@ class Medio:
 
   def compuestosPresentes(self):
     """ También sin repetidos. """
-    return self.componentes.keys()
+    return set(self.componentes.keys())
 
   def cantMolesElemento(self, elem):
     """ La cantidad total de moles del elemento indicado en el medio, considerando todos los compuestos incluidos y sus cantidades. """

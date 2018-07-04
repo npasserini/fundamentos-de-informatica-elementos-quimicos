@@ -7,6 +7,9 @@ class Compuesto:
     self.atomos = {}
     self.enlaces = []
 
+  def __repr__(self):
+    return '%s(\'%s\')' % (self.__class__.__name__, self.nombre)
+
   def agregarAtomo(self, elemento, nombre = None):
     if nombre is None:
         nombre = elemento.simbolo() + `self.cantAtomosDe(elemento) + 1`

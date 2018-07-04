@@ -23,12 +23,12 @@ nh3.agregarAtomo(nitrogeno)
 nh3.agregarAtomos(hidrogeno, 3)
 nh3.enlazarConVarios("N1", ["H1", "H2", "H3"])
 
-agua = Compuesto("Agua")
+agua = Compuesto("H2O")
 agua.agregarAtomo(oxigeno)
 agua.agregarAtomos(hidrogeno, 2)
 agua.enlazarConVarios("O1", ["H1", "H2"])
 
-metano = Compuesto("Metano")
+metano = Compuesto("CH4")
 metano.agregarAtomo(carbono)
 metano.agregarAtomos(hidrogeno, 4)
 metano.enlazarConVarios("C1", ["H1", "H2", "H3", "H4"])
@@ -37,6 +37,8 @@ co2 = Compuesto("CO2")
 co2.agregarAtomo(carbono)
 co2.agregarAtomos(oxigeno, 2)
 co2.enlazarConVarios("C1", ["O1", "O2"])
+
+compuestos = [nh3, agua, metano, co2]
 
 # El higrógeno tiene un enlace sobrante
 sobranol = Compuesto('sobranol')
@@ -59,9 +61,13 @@ inconexiol = Compuesto('inconexiol')
 inconexiol.agregarAtomo(oxigeno)
 inconexiol.agregarAtomo(hidrogeno)
 
-medioRaro = Medio()
-medioRaro.agregarComponente(agua, 100)
-medioRaro.agregarComponente(nh3, 6)
-medioRaro.agregarComponente(metano, 20)
-medioRaro.agregarComponente(co2, 14)
-medioRaro.agregarComponente(nh3, 15)
+def createMedioRaro():
+  medioRaro = Medio()
+  medioRaro.agregarComponente(agua, 100)
+  medioRaro.agregarComponente(nh3, 6)
+  medioRaro.agregarComponente(metano, 20)
+  medioRaro.agregarComponente(co2, 14)
+  medioRaro.agregarComponente(nh3, 15)
+  return medioRaro
+
+medioRaro = createMedioRaro()
