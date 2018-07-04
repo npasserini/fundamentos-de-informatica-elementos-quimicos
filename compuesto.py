@@ -42,7 +42,7 @@ class Compuesto:
     return len(self.enlaces)
 
   def cantEnlacesAtomo(self, atomo):
-    return len([enlace for enlace in self.enlaces if atomo in enlace])
+    return len(self.enlacesAtomo(atomo))
 
   # Sobre masa
   def masaMolar(self):
@@ -52,6 +52,9 @@ class Compuesto:
     return self.masaMolarElemento(elemento) / self.masaMolar()
 
   # Auxiliares
+  def enlacesAtomo(self, atomo):
+    return [enlace for enlace in self.enlaces if atomo in enlace]
+
   def masaMolarElemento(self, elemento):
     return elemento.pesoAtomico() * self.cantAtomosDe(elemento)
 
@@ -85,7 +88,16 @@ class Compuesto:
     return all(map(self.atomosEnlaceExisten, self.enlaces))
 
   def atomosEnlaceExisten(self, enlace):
-    return all(map(self.atomoExiste, enlace))
+    return all(map(self.incluyeAtomo, enlace))
 
-  def atomoExiste(self, atomo):
-    return atomo in self.atomos.keys()
+  ## Más información sobre enlaces
+  def conQuienesEstaEnlazado(self, nombre):
+    def enlazadoEn(atomo1, atomo2): return atomo1 if atomo2 == nombre else atomo2
+    return set(enlazadoEn(*enlace) for enlace in self.enlacesAtomo(nombre))
+
+  def estanEnlazados(self, elem1, elem2):
+    return elem1 in self.elementosEnlazados(elem2)
+
+  # Auxiliares
+  def elementosEnlazados(self, elemento):
+    return set(self.atomos[nombre] for atomo in self.atomosDe(elemento) for nombre in self.conQuienesEstaEnlazado(atomo))

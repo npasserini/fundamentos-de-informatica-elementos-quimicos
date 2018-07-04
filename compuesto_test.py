@@ -25,12 +25,14 @@ class CompuestoTest(unittest.TestCase):
       [elem.simbolo() for elem in nh3.elementosPresentes()]
     )
 
+  # Sobre enlaces
   def test_cantEnlaces(self):
     self.assertEqual(3, nh3.cantEnlaces())
 
   def test_cantEnlacesAtomo(self):
     self.assertEqual(1, nh3.cantEnlacesAtomo("H2"))
 
+  # Sobre masa
   def test_masaMolar(self):
     self.assertEqual(17, nh3.masaMolar())
 
@@ -45,6 +47,8 @@ class CompuestoTest(unittest.TestCase):
   def test_proporcionSobreMasa(self):
     self.assertAlmostEqual(0.8235, nh3.proporcionSobreMasa(nitrogeno), 4)
 
+  ### Opcionales ###
+  ## Validación de enlaces
   def test_atomoTieneEnlacesSobrantes(self):
     self.assertItemsEqual(["H1"], sobranol.atomosConEnlacesSobrantes())
     self.assertItemsEqual([], nh3.atomosConEnlacesSobrantes())
@@ -59,3 +63,12 @@ class CompuestoTest(unittest.TestCase):
 
     self.assertFalse(sobranol.enlacesOK())
     self.assertFalse(inexistenciol.enlacesOK())
+
+  ## Más información sobre enlaces
+  def test_conQuienesEstaEnlazado(self):
+    self.assertItemsEqual(["H1", "H2", "H3"], nh3.conQuienesEstaEnlazado("N1"))
+    self.assertItemsEqual(["N1"], nh3.conQuienesEstaEnlazado("H1"))
+
+  def test_estanEnlazados(self):
+    self.assertTrue(nh3.estanEnlazados(hidrogeno, nitrogeno))
+    self.assertFalse(inconexiol.estanEnlazados(hidrogeno, nitrogeno))

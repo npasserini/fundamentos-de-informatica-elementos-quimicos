@@ -18,8 +18,8 @@ tabla = tabla_periodica.TablaPeriodica([
 tablaVacia = tabla_periodica.TablaPeriodica()
 
 nh3 = compuesto.Compuesto('NH3')
-nh3.agregarAtomo(tabla.elementoS("N"))
-nh3.agregarAtomos(tabla.elementoS("H"), 3)
+nh3.agregarAtomo(nitrogeno)
+nh3.agregarAtomos(hidrogeno, 3)
 nh3.enlazarConVarios("N1", ["H1", "H2", "H3"])
 
 # El higrógeno tiene un enlace sobrante
@@ -36,4 +36,9 @@ disponiblol.enlazar("O1", "H1")
 
 # El oxígeno tiene un enlace disponible
 inexistenciol = compuesto.Compuesto('inexistenciol')
-inexistenciol.enlazar("O!", "H1")
+inexistenciol.enlazar("O1", "H1")
+
+# Elementos inconexos
+inconexiol = compuesto.Compuesto('inconexiol')
+inconexiol.agregarAtomo(oxigeno)
+inconexiol.agregarAtomo(hidrogeno)
