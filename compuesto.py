@@ -101,3 +101,7 @@ class Compuesto:
   # Auxiliares
   def elementosEnlazados(self, elemento):
     return set(self.atomos[nombre] for atomo in self.atomosDe(elemento) for nombre in self.conQuienesEstaEnlazado(atomo))
+
+  # Para uso en medio
+  def cantAtomosDe(self, elemento):
+    return len(self.atomosDe(elemento))
