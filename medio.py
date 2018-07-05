@@ -39,3 +39,25 @@ class Medio:
   # Auxiliares
   def molesDeComponente(self, componente):
     return self.componentes[componente] if self.componentes.has_key(componente) else 0
+
+
+  ### Opcionales ###
+  def escalar(self, numero):
+    """ Multiplica las cantidades de cada componente por el número indicado. """
+    for componente, moles in self.componentes.items():
+      self.componentes[componente] = moles * numero
+
+  def incorporarMedio(self, otroMedio):
+    """ Suma a las cantidades del medio que recibe la operación, las incluidas en otroMedio. """
+    for componente, moles in otroMedio.componentes.items():
+      self.agregarComponente(componente, moles)
+
+  def masMedio(self, otroMedio):
+    """
+      Devuelve un nuevo medio, que es la suma entre el medio que recibe la operación y otroMedio.
+      Ni el medio que recibe la operación no debe modificarse ni otroMedio deben modificarse.
+    """
+    resultado = Medio()
+    resultado.incorporarMedio(self)
+    resultado.incorporarMedio(otroMedio)
+    return resultado

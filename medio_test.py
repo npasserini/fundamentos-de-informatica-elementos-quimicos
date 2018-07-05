@@ -57,3 +57,37 @@ class MedioTest(unittest.TestCase):
     self.assertAlmostEqual(0.6621, medioRaro.proporcionElementoSobreMasa(oxigeno), 3)
     self.assertAlmostEqual(0.1108, medioRaro.proporcionElementoSobreMasa(hidrogeno), 3)
 
+  ### Opcionales ###
+  def test_escalar(self):
+    """ medioRaro.escalar(3) pasa la cantidad de agua de 100 moles a 300, la de amoníaco de 21 moles a 63, etc.; """
+    medio = createMedioRaro()
+    medio.escalar(3)
+    self.assertEqual(300, medio.molesDeComponente(agua))
+    self.assertEqual(63, medio.molesDeComponente(nh3))
+
+    """ mientras que medioRaro.escalar(0.5) deja al medio con 50 moles de agua, 10.5 de amoníaco, etc. """
+    medio = createMedioRaro()
+    medio.escalar(0.5)
+    self.assertEqual(50, medio.molesDeComponente(agua))
+    self.assertEqual(10.5, medio.molesDeComponente(nh3))
+
+  def test_incorporarMedio(self):
+    medio = Medio()
+    medio.incorporarMedio(medioRaro)
+    self.assertEqual(100, medio.molesDeComponente(agua))
+    self.assertEqual(21, medio.molesDeComponente(nh3))
+    self.assertEqual(20, medio.molesDeComponente(metano))
+    self.assertEqual(14, medio.molesDeComponente(co2))
+
+    medio.incorporarMedio(otroMedio)
+    self.assertEqual(125, medio.molesDeComponente(agua)) # 100 + 25
+    self.assertEqual(31, medio.molesDeComponente(nh3)) # 21 + 10
+    self.assertEqual(20, medio.molesDeComponente(metano)) # sin cambios
+    self.assertEqual(14, medio.molesDeComponente(co2)) # sin cambios
+
+  def test_masMedio(self):
+    medio = medioRaro.masMedio(otroMedio)
+    self.assertEqual(125, medio.molesDeComponente(agua)) # 100 + 25
+    self.assertEqual(31, medio.molesDeComponente(nh3)) # 21 + 10
+    self.assertEqual(20, medio.molesDeComponente(metano)) # sin cambios
+    self.assertEqual(14, medio.molesDeComponente(co2)) # sin cambios

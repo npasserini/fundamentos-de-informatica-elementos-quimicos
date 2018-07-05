@@ -71,3 +71,7 @@ def createMedioRaro():
   return medioRaro
 
 medioRaro = createMedioRaro()
+
+otroMedio = Medio()
+otroMedio.agregarComponente(agua, 25)
+otroMedio.agregarComponente(nh3, 10)

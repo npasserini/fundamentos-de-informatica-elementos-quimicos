@@ -31,3 +31,21 @@ class DescripcionMedio:
       ''' agrega al medio, la cantidad de moles del compuesto que están incluidas en la descripción. '''
       medio.agregarComponente(compuesto, self.molesCompuesto(compuesto))
 
+  def compuestosDesconocidos(self, listaCompuestos):
+    """
+      Devuelve la lista de las fórmulas presentes en la descripción, que no coinciden con ninguno de los compuestos en listaCompuestos.
+      P.ej. miDescripcion.compuestosDesconocidos([agua,nh3,metano]) devuelve ["CO2"],
+      porque la lista suministrada no incluye al dióxido de carbono, que sí está presente en la descripción.
+    """
+    return (compuesto.nombre for compuesto in self.medio.compuestosPresentes() - set(listaCompuestos))
+
+
+  def agregarTodosAMedio(self, medio, listaCompuestos):
+    """ Que agrega al medio todos los compuestos presentes en la descripción que estén en listaCompuestos. """
+
+
+  def agregarTodosAMedioConEscala(self, medio, listaCompuestos, escala):
+    """
+      Idem anterior, multiplicando las cantidades a agregar según la escala.
+      P.ej. miDescripcion.agregarTodosAMedioConEscala([agua,nh3,metano], 100) agrega 200 moles de agua y 100 de metano.
+    """
