@@ -3,7 +3,7 @@ import unittest
 from fixture import *
 from descripcion_medio import DescripcionMedio
 
-class MedioTest(unittest.TestCase):
+class DescripcionMedioTest(unittest.TestCase):
   def setUp(self):
     self.miDescripcion = DescripcionMedio("[H2O][CO2][H2O][CH4]")
 
@@ -57,3 +57,8 @@ class MedioTest(unittest.TestCase):
     self.assertEqual(300, medio.molesDeComponente(agua))
     self.assertEqual(120, medio.molesDeComponente(metano))
     self.assertEqual(21, medio.molesDeComponente(nh3))
+
+class DescripcionMedioConCantidadesTest(DescripcionMedioTest):
+  """ Corre todos los mismos tests pero con una DescripcionMedio creada a partir de las descripciones con cantidades """
+  def setUp(self):
+    self.miDescripcion = DescripcionMedio("[H2O](2)[CO2](1)[CH4](1)")

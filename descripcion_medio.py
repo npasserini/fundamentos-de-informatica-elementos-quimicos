@@ -11,8 +11,11 @@ class DescripcionMedio:
     self.incorporarDescripcion(descripcion)
 
   def incorporarDescripcion(self, descripcion):
-    for formula in re.findall("\[(.*?)\]", descripcion):
-      self.agregarFormula(formula, 1)
+    """ Soporta ambos tipos de descripciones en la misma regex """
+    for (formula, strCantidad) in re.findall("\[(.*?)\](?:\((.*?)\))?", descripcion):
+      cantidad = int(strCantidad) if strCantidad else 1
+      if cantidad > 0:
+        self.agregarFormula(formula, cantidad)
 
   def apareceCompuesto(self, compuesto):
     ''' indica si un compuesto está presente en la descripción. '''
