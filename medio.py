@@ -8,6 +8,10 @@ class Medio:
   def agregarComponente(self, componente, moles):
     self.componentes[componente] = self.molesDeComponente(componente) + moles
 
+  def quitarComponente(self, componente, moles):
+    """ Para reacciones químicas """
+    self.componentes[componente] = self.molesDeComponente(componente) - moles
+
   def masaTotal(self):
     """ Considerando la cantidad de moles de cada elemento. """
     return sum(componente.masaMolar() * self.molesDeComponente(componente) for componente in self.componentes)
