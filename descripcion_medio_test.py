@@ -43,6 +43,17 @@ class MedioTest(unittest.TestCase):
     """
     self.assertItemsEqual(["CO2"], self.miDescripcion.compuestosDesconocidos([ agua, nh3, metano ]))
 
-# agregarTodosAMedio(medio, listaCompuestos), que agrega al medio todos los compuestos presentes en la descripción que estén en listaCompuestos.
-# agregarTodosAMedioConEscala(medio, listaCompuestos, escala), idem anterior, multiplicando las cantidades a agregar según la escala.
-# P.ej. miDescripcion.agregarTodosAMedioConEscala([agua,nh3,metano], 100) agrega 200 moles de agua y 100 de metano.
+  def test_agregarTodosAMedio(self):
+    medio = createMedioRaro()
+    self.miDescripcion.agregarTodosAMedio(medio, [agua, metano, nh3])
+    self.assertEqual(102, medio.molesDeComponente(agua))
+    self.assertEqual(21, medio.molesDeComponente(metano))
+    self.assertEqual(21, medio.molesDeComponente(nh3))
+
+  def test_agregarTodosAMedioConEscala(self):
+    """ P.ej. miDescripcion.agregarTodosAMedioConEscala([agua,nh3,metano], 100) agrega 200 moles de agua y 100 de metano. """
+    medio = createMedioRaro()
+    self.miDescripcion.agregarTodosAMedioConEscala(medio, [agua, nh3, metano], 100)
+    self.assertEqual(300, medio.molesDeComponente(agua))
+    self.assertEqual(120, medio.molesDeComponente(metano))
+    self.assertEqual(21, medio.molesDeComponente(nh3))

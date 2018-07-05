@@ -38,8 +38,6 @@ co2.agregarAtomo(carbono)
 co2.agregarAtomos(oxigeno, 2)
 co2.enlazarConVarios("C1", ["O1", "O2"])
 
-compuestos = [nh3, agua, metano, co2]
-
 # El higrógeno tiene un enlace sobrante
 sobranol = Compuesto('sobranol')
 sobranol.agregarAtomo(oxigeno)
